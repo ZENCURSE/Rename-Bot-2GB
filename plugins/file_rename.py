@@ -95,15 +95,19 @@ async def doc(bot, update):
      	return await ms.edit(e)
     
 
-    # Metadata Adding Code
+        # Metadata Adding Code
     _bool_metadata = await jishubotz.get_metadata(update.message.chat.id) 
     
     if _bool_metadata:
-        metadata = await jishubotz.get_metadata_code(update.message.chat.id)
+        metadata_code = await jishubotz.get_metadata_code(update.message.chat.id)
         metadata_path = f"Metadata/{new_filename}"
-        await add_metadata(path, metadata_path, metadata, ms)
+        os.makedirs("Metadata", exist_ok=True)
+        final_path = await add_metadata(path, metadata_path, metadata_code, ms)
+        if not final_path or not os.path.exists(final_path):
+            final_path = path
     else:
         await ms.edit("⏳ Mode Changing...  ⚡")
+        final_path = path
 
     duration = 0
     try:
