@@ -24,7 +24,7 @@ async def not_subscribed(_, client, message):
 @Client.on_message(filters.private & filters.create(not_subscribed))
 async def forces_sub(client, message):
     buttons = [[InlineKeyboardButton(text="📢 Join Update Channel 📢", url=f"https://t.me/{Config.FORCE_SUBS}") ]]
-    text = f"""<b>Hello {message.from_user.mention} \n\nYou Need To Join In My Channel To Use Me\n\nKindly Please Join Channel</b>"""
+    text = f"""<b>Hello {message.from_user.mention} \n\n Hey You Need To Join In My Channel To Use Me\n\nKindly Please Join My Channel</b>"""
     try:
         user = await client.get_chat_member(Config.FORCE_SUBS, message.from_user.id)    
         if user.status == enums.ChatMemberStatus.BANNED:                                   
@@ -34,12 +34,3 @@ async def forces_sub(client, message):
     return await message.reply_text(text=text,quote=True, reply_markup=InlineKeyboardMarkup(buttons))
 
 
-
-
-
-# Jishu Developer 
-# Don't Remove Credit 🥺
-# Telegram Channel @MadflixBotz
-# Backup Channel @JishuBotz
-# Developer @JishuDeveloper
-# Contact @MadflixSupport
