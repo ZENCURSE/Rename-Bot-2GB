@@ -15,7 +15,7 @@ class Config(object):
  
     # other configs
     BOT_UPTIME  = time.time()
-    START_PIC   = os.environ.get("START_PIC", "https://i.ibb.co/6RtW5fnr/c9336e79330d.jpg")
+    START_PIC   = os.environ.get("START_PIC", "https://i.ibb.co/NgDPVg0z/8cc6914ebc13.jpg")
     ADMIN = [int(admin) if id_pattern.search(admin) else admin for admin in os.environ.get('ADMIN', '6426143861').split()]
 
     # channels logs
@@ -49,7 +49,7 @@ class Txt(object):
 ├<b>📕 Library</b> : <a href=https://github.com/pyrogram>Pyrogram</a>
 ├<b>✏️ Language</b> : <a href=https://www.python.org>Python 3</a>
 ├<b>💾 Database</b> : <a href=https://cloud.mongodb.com>Mongo DB</a>
-├<b>📊 Build Version</b> : <a href=https://t.me/Renox_Rename_Bot>Rename v4.7.0</a></b>     
+├<b>📊 Build Version</b> : <a href=https://t.me/Flexy_Rename_bot>Rename v4.7.0</a></b>     
 ╰───────────────⍟
 """
 
