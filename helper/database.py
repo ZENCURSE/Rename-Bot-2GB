@@ -17,7 +17,7 @@ class Database:
             prefix = None,
             suffix = None,
             metadata = False,
-            metadata_code = "By :- @MadflixBotz"
+            metadata_code = "By :- @CodeRips"
         )
 
     async def add_user(self, b, m):
@@ -42,82 +42,56 @@ class Database:
     async def delete_user(self, user_id):
         await self.col.delete_many({'_id': int(user_id)})
     
-
-
     #======================= Thumbnail ========================#
-
     async def set_thumbnail(self, id, file_id):
-        await self.col.update_one({'_id': int(id)}, {'$set': {'file_id': file_id}})
+        await self.col.update_one({'_id': int(id)}, {'$set': {'file_id': file_id}}, upsert=True)
 
     async def get_thumbnail(self, id):
         user = await self.col.find_one({'_id': int(id)})
-        return user.get('file_id', None)
-    
-    
+        return user.get('file_id', None) if user else None
 
     #======================= Caption ========================#
-
     async def set_caption(self, id, caption):
-        await self.col.update_one({'_id': int(id)}, {'$set': {'caption': caption}})
+        await self.col.update_one({'_id': int(id)}, {'$set': {'caption': caption}}, upsert=True)
 
     async def get_caption(self, id):
         user = await self.col.find_one({'_id': int(id)})
-        return user.get('caption', None)
-
-
+        return user.get('caption', None) if user else None
 
     #======================= Prefix ========================#
-
     async def set_prefix(self, id, prefix):
-        await self.col.update_one({'_id': int(id)}, {'$set': {'prefix': prefix}})  
+        await self.col.update_one({'_id': int(id)}, {'$set': {'prefix': prefix}}, upsert=True)  
         
     async def get_prefix(self, id):
         user = await self.col.find_one({'_id': int(id)})
-        return user.get('prefix', None)      
-    
-
+        return user.get('prefix', None) if user else None
 
     #======================= Suffix ========================#
-
     async def set_suffix(self, id, suffix):
-        await self.col.update_one({'_id': int(id)}, {'$set': {'suffix': suffix}})  
+        await self.col.update_one({'_id': int(id)}, {'$set': {'suffix': suffix}}, upsert=True)  
         
     async def get_suffix(self, id):
         user = await self.col.find_one({'_id': int(id)})
-        return user.get('suffix', None)
-
-
+        return user.get('suffix', None) if user else None
 
     #======================= Metadata ========================#
-        
     async def set_metadata(self, id, bool_meta):
-        await self.col.update_one({'_id': int(id)}, {'$set': {'metadata': bool_meta}})
+        await self.col.update_one({'_id': int(id)}, {'$set': {'metadata': bool_meta}}, upsert=True)
         
     async def get_metadata(self, id):
         user = await self.col.find_one({'_id': int(id)})
-        return user.get('metadata', None)
-        
-        
+        if not user:
+            return False
+        return user.get('metadata', False)
         
     #======================= Metadata Code ========================#    
-        
     async def set_metadata_code(self, id, metadata_code):
-        await self.col.update_one({'_id': int(id)}, {'$set': {'metadata_code': metadata_code}})
+        await self.col.update_one({'_id': int(id)}, {'$set': {'metadata_code': metadata_code}}, upsert=True)
 
     async def get_metadata_code(self, id):
         user = await self.col.find_one({'_id': int(id)})
-        return user.get('metadata_code', None)   
-
-
+        if not user:
+            return "By :- @CodeRips"
+        return user.get('metadata_code', "By :- @CodeRips")   
 
 jishubotz = Database(Config.DATABASE_URL, Config.DATABASE_NAME)
-
-
-
-
-# Jishu Developer 
-# Don't Remove Credit 🥺
-# Telegram Channel @MadflixBotz
-# Backup Channel @JishuBotz
-# Developer @JishuDeveloper
-# Contact @MadflixSupport
